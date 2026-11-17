@@ -4,13 +4,15 @@ COLORS = {
     "helmet": (0, 200, 0),
     "vest": (0, 165, 255),
     "boots": (255, 100, 0),
-    "unknown": (150, 150, 150),
 }
+HIDDEN = {"person"}  # drawn via tracks instead (draw_people)
 
 
 def draw_detections(frame, detections):
     out = frame.copy()
     for d in detections:
+        if d.label in HIDDEN:
+            continue
         x1, y1, x2, y2 = map(int, d.box)
         color = COLORS.get(d.label, (0, 0, 255))
         cv2.rectangle(out, (x1, y1), (x2, y2), color, 2)

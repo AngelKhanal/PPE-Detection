@@ -4,12 +4,12 @@ imgsz: 640
 min_conf:           # applied after detection, per class
   helmet: 0.6
   boots: 0.4
-  unknown: 0.5
+  person: 0.5
   vest: 0.5
 classes:
   0: helmet
   1: boots
-  2: unknown   # unconfirmed, rules ignore it
+  2: person    # whole-body box, labeled inconsistently in dataset; not used for rules
   3: vest
 
 person:
