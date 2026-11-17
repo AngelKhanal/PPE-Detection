@@ -1,2 +1,7 @@
 .venv/
+models/
+datasets/
+outputs/
 webcamtest.py
+__pycache__/
+*.pt
