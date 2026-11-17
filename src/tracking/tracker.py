@@ -26,3 +26,13 @@ class PersonTracker:
             Track(int(i), tuple(b))
             for i, b in zip(result.boxes.id, result.boxes.xyxy.tolist())
         ]
+
+    def detect_once(self, frame):
+        """Single image: no tracking, people numbered 1..n."""
+        result = self.model.predict(
+            frame, classes=[0], conf=self.conf, imgsz=self.imgsz, verbose=False
+        )[0]
+        return [
+            Track(i, tuple(b))
+            for i, b in enumerate(result.boxes.xyxy.tolist(), start=1)
+        ]

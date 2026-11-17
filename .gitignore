@@ -1,4 +1,5 @@
 .venv/
+configs/*.local.yaml
 models/
 datasets/
 outputs/

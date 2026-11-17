@@ -1,0 +1,2 @@
+# Copy to configs/cctv.local.yaml and fill in. The .local.yaml file is gitignored.
+url: "rtsp://USER:PASSWORD@CAMERA_IP:554/STREAM_PATH"
