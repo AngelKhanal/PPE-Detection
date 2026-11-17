@@ -32,3 +32,11 @@ def draw_people(frame, tracks, status):
         cv2.putText(out, text, (x1, min(y2 + 18, out.shape[0] - 4)),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 2)
     return out
+
+def fit_to_screen(frame, max_w=1280, max_h=720):
+    """Return a downscaled copy for display. Never enlarges."""
+    h, w = frame.shape[:2]
+    scale = min(max_w / w, max_h / h, 1.0)
+    if scale == 1.0:
+        return frame
+    return cv2.resize(frame, (int(w * scale), int(h * scale)), interpolation=cv2.INTER_AREA)

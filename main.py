@@ -12,7 +12,7 @@ from src.tracking.tracker import PersonTracker
 from src.video.camera_source import camera_frames
 from src.video.image_source import load_image
 from src.video.video_source import video_fps, video_frames
-from src.visualization.draw_results import draw_detections, draw_people
+from src.visualization.draw_results import draw_detections, draw_people, fit_to_screen
 
 CCTV_CONFIG = Path("configs/cctv.local.yaml")
 
@@ -65,6 +65,7 @@ def run_stream(frames, save_path=None, fps=30.0):
     rules = ComplianceRules(cfg["required"], cfg["violation_frames"])
     evidence = EvidenceLogger()
 
+    cv2.namedWindow("ppe", cv2.WINDOW_NORMAL)
     writer = None
     try:
         for frame in frames:
@@ -83,7 +84,7 @@ def run_stream(frames, save_path=None, fps=30.0):
                     )
                 writer.write(out)
 
-            cv2.imshow("ppe", out)
+            cv2.imshow("ppe", fit_to_screen(out))
             if cv2.waitKey(1) & 0xFF == ord("q"):
                 break
     finally:
